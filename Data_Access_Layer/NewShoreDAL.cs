@@ -1,6 +1,9 @@
-﻿using NewShoreAPI.Entities;
+﻿using Data_Access_Layer.Models;
+using NewShoreAPI.Entities;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
+
 
 
 namespace Data_Access_Layer
@@ -37,5 +40,12 @@ namespace Data_Access_Layer
             return JourneyDB;
         }
 
-    }
+        public int SaveJourney(string myJourney)
+        {
+            var JourneyDz = JsonConvert.DeserializeObject<JourneyModel>(myJourney);
+            int iResult = 1;
+            return iResult;
+        }
+
+        }
 }

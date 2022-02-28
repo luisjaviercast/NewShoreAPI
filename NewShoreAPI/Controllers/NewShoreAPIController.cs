@@ -75,8 +75,10 @@ namespace NewShoreAPI.Controllers
                 
                 JSONresult = JsonConvert.SerializeObject(myJourney);
 
-
                 //SAVE JOURNEY TO DB
+
+                int iIdJourney = newShoreBLL.SaveJourney(myJourney);
+
             }
             else { 
 

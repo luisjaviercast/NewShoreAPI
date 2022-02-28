@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.Serialization;
 using NewShoreAPI.Entities;
-
+using Newtonsoft.Json;
 
 namespace Business_Logic_Layer
 {
@@ -33,6 +33,15 @@ namespace Business_Logic_Layer
             JourneyModel journeyModelResult = new JourneyModel();
 
             return journeyModelResult;
+        }
+
+        public int SaveJourney(JourneyModel myJourney)
+        {
+            string JSONresult = JsonConvert.SerializeObject(myJourney);
+
+            int iResult = newShoreDALL.SaveJourney(JSONresult);
+            
+            return iResult;
         }
 
     }
