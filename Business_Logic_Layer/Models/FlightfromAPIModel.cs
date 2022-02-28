@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Business_Logic_Layer.Models
 {
-    public class FlightfromAPI
+    public class FlightfromAPIModel
     {
         public string  flightNumber { get; set; }
         public string  flightCarrier { get; set; }

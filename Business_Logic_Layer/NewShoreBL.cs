@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Business_Logic_Layer.Models;
+using System;
 using System.Runtime.Serialization;
+using NewShoreAPI.Entities;
+
 
 namespace Business_Logic_Layer
 {
@@ -21,6 +24,15 @@ namespace Business_Logic_Layer
         public string GetFlightsByID()
         {
             return "8009";
+        }
+
+        public JourneyModel GetJourneyByRoute(string Dept, string Arrv)
+        {
+            Journey JourneyDB = newShoreDALL.GetJourneyByRoute( Dept,  Arrv);
+
+            JourneyModel journeyModelResult = new JourneyModel();
+
+            return journeyModelResult;
         }
 
     }
