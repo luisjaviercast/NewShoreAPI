@@ -32,6 +32,11 @@ namespace Business_Logic_Layer
 
             JourneyModel journeyModelResult = new JourneyModel();
 
+            journeyModelResult.IdJourney   = JourneyDB.IdJourney;
+            journeyModelResult.Origin      = JourneyDB.Origin;
+            journeyModelResult.Destination = JourneyDB.Destination;
+            journeyModelResult.Price       = JourneyDB.Price;
+
             return journeyModelResult;
         }
 

@@ -80,9 +80,10 @@ namespace NewShoreAPI.Controllers
                 int iIdJourney = newShoreBLL.SaveJourney(myJourney);
 
             }
-            else { 
+            else {
 
-                // MAP FROM DB            
+                // MAP FROM DB
+                 JSONresult = JsonConvert.SerializeObject(myJourney);
             }
             // END JOURNEY
 

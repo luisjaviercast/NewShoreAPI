@@ -32,7 +32,7 @@ namespace Data_Access_Layer
 
             Journey JourneyDB = new Journey();
 
-            if (listJourney.Count() != 0) {
+            if (listJourney != null) {
 
                 JourneyDB = listJourney.First();
             }
@@ -43,7 +43,25 @@ namespace Data_Access_Layer
         public int SaveJourney(string myJourney)
         {
             var JourneyDz = JsonConvert.DeserializeObject<JourneyModel>(myJourney);
-            int iResult = 1;
+
+            int iResult = 0;
+            Journey iJourney = new Journey();
+
+            iJourney.IdJourney = JourneyDz.IdJourney;
+            iJourney.Origin = JourneyDz.Origin;
+            iJourney.Destination = JourneyDz.Destination;
+            iJourney.Price = JourneyDz.Price;
+
+            try
+            {
+                DBContext.Journeys.Add(iJourney);
+                iResult = DBContext.SaveChanges();
+            }
+            catch
+            {
+                SystemException myExp = new SystemException();
+            }
+
             return iResult;
         }
 
