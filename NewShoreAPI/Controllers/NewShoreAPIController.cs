@@ -46,6 +46,7 @@ namespace NewShoreAPI.Controllers
 
             try
             {
+                //CONSUME API REST
                 jResult = await APIService.ConsumeAPIFlights();
             }
             catch (WebException Ex)
@@ -81,9 +82,19 @@ namespace NewShoreAPI.Controllers
 
             }
             else {
-
                 // MAP FROM DB
-                 JSONresult = JsonConvert.SerializeObject(myJourney);
+                foreach (FlightfromAPIModel f in myJourney.JourneyFlights)
+                {
+                    var flightDetail = flightList.Where(x => x.flightNumber == f.flightNumber).First();
+
+                    f.departureStation = flightDetail.departureStation;
+                    f.arrivalStation   = flightDetail.arrivalStation;
+                    f.flightCarrier    = "CO";
+                    f.price            = flightDetail.price;
+                    
+                }
+
+                JSONresult = JsonConvert.SerializeObject(myJourney);
             }
             // END JOURNEY
 

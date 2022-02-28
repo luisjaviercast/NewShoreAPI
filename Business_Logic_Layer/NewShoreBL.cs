@@ -3,6 +3,7 @@ using System;
 using System.Runtime.Serialization;
 using NewShoreAPI.Entities;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Business_Logic_Layer
 {
@@ -32,10 +33,26 @@ namespace Business_Logic_Layer
 
             JourneyModel journeyModelResult = new JourneyModel();
 
+           List< FlightfromAPIModel> flightList = new List<FlightfromAPIModel>();
+
             journeyModelResult.IdJourney   = JourneyDB.IdJourney;
             journeyModelResult.Origin      = JourneyDB.Origin;
             journeyModelResult.Destination = JourneyDB.Destination;
-            journeyModelResult.Price       = JourneyDB.Price;
+            journeyModelResult.Price       = JourneyDB.Price;           
+
+            // SELECT FLIGHTS FROM LIST
+
+            foreach (JourneyFlight f in JourneyDB.JourneyFlights)
+            {
+                FlightfromAPIModel flightDB = new FlightfromAPIModel();
+                flightDB.flightNumber     = f.IdFlight.ToString();
+                flightDB.departureStation = " ";
+                flightDB.arrivalStation   = " ";
+                flightDB.flightCarrier    = "CO";
+                flightDB.price            = 0;
+                flightList.Add(flightDB);
+            }
+            journeyModelResult.JourneyFlights = flightList;
 
             return journeyModelResult;
         }
