@@ -18,6 +18,7 @@ namespace Business_Logic_Layer
            
             using (var httpClient = new HttpClient())
             {
+                // API NEWSHORE LEVEL 0
                 using (var response = await httpClient.GetAsync("https://recruiting-api.newshore.es/api/flights/0"))
                 {
                     var apiResponse = await response.Content.ReadAsStringAsync();
